@@ -3,7 +3,7 @@
 ### Чек-лист готовности к домашнему заданию
 
 1. Скачайте и установите актуальную версию **Terraform** >=1.4.X . Приложите скриншот вывода команды ```terraform --version```.
-![задание 1](/Users/r2d2/PycharmProjects/devops-netology/ter-homeworks/01/1.png)
+![задание 1](https://github.com/andrewchikin/ter-homeworks/blob/e21e1475937086f6b30d88a618c3e46a16c5ae4d/01/1.png)
 
 ### Задание 1
 
@@ -39,14 +39,14 @@ Error: Missing name for resource
 Название файла начинается на цифру, исправил на nginx
 
 5. Выполните код. В качестве ответа приложите вывод команды ```docker ps```.
-![задание 1](/Users/r2d2/PycharmProjects/devops-netology/ter-homeworks/01/2.png)
+![задание 1](https://github.com/andrewchikin/ter-homeworks/blob/e21e1475937086f6b30d88a618c3e46a16c5ae4d/01/2.png)
 6. Замените имя docker-контейнера в блоке кода на ```hello_world```. Не перепутайте имя контейнера и имя образа. Мы всё ещё продолжаем использовать name = "nginx:latest". Выполните команду ```terraform apply -auto-approve```.
 Объясните своими словами, в чём может быть опасность применения ключа  ```-auto-approve```. В качестве ответа дополнительно приложите вывод команды ```docker ps```.
-![задание 1](/Users/r2d2/PycharmProjects/devops-netology/ter-homeworks/01/3.png)
+![задание 1](https://github.com/andrewchikin/ter-homeworks/blob/e21e1475937086f6b30d88a618c3e46a16c5ae4d/01/3.png)
 ```terraform apply -auto-approve``` - при использовании ключа apply выполняется сразу подтверждения.
 8. Уничтожьте созданные ресурсы с помощью **terraform**. Убедитесь, что все ресурсы удалены. Приложите содержимое файла **terraform.tfstate**. 
 terraform destroy
-![задание 1](/Users/r2d2/PycharmProjects/devops-netology/ter-homeworks/01/4.png)
+![задание 1](https://github.com/andrewchikin/ter-homeworks/blob/e21e1475937086f6b30d88a618c3e46a16c5ae4d/01/4.png)
 9. Объясните, почему при этом не был удалён docker-образ **nginx:latest**. Ответ подкрепите выдержкой из документации [**провайдера docker**](https://docs.comcloud.xyz/providers/kreuzwerker/docker/latest/docs).  
 Потому что мы использовали базовое описание ресурса, для удаления надо прописать еще force_remove(Boolean) Если true, то образ принудительно удаляется при уничтожении ресурса.
 
