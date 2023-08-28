@@ -47,9 +47,16 @@ Error: Missing name for resource
 8. Уничтожьте созданные ресурсы с помощью **terraform**. Убедитесь, что все ресурсы удалены. Приложите содержимое файла **terraform.tfstate**. 
 terraform destroy
 ![задание 1](https://github.com/andrewchikin/ter-homeworks/blob/e21e1475937086f6b30d88a618c3e46a16c5ae4d/01/4.png)
-9. Объясните, почему при этом не был удалён docker-образ **nginx:latest**. Ответ подкрепите выдержкой из документации [**провайдера docker**](https://docs.comcloud.xyz/providers/kreuzwerker/docker/latest/docs).  
-Потому что мы использовали базовое описание ресурса, для удаления надо прописать еще force_remove(Boolean) Если true, то образ принудительно удаляется при уничтожении ресурса.
+9. Объясните, почему при этом не был удалён docker-образ **nginx:latest**. Ответ подкрепите выдержкой из документации [**провайдера docker**](https://docs.comcloud.xyz/providers/kreuzwerker/docker/latest/docs).
 
+в ресурсе docker_image 
+опционально доступны два параметра
+
+keep_locally (Boolean) If true, then the Docker image won't be deleted on destroy operation. If this is false, it will delete the image from the docker local storage on destroy operation.
+А здесь удаление происходит при команде терраформа destroy, чтобы удаление не произошло мы указали   keep_locally = false
+
+force_remove (Boolean) If true, then the image is removed forcibly when the resource is destroyed.
+Как я понял тут удаление происходит при удалении ресурса, как удалять именно ресурс(командой или просто из кода) мы либо не проходили, либо я пропустил. Буду благодарен, если объясните.
 ------
 
 ## Дополнительное задание (со звёздочкой*)
