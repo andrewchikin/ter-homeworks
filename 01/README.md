@@ -57,7 +57,7 @@ keep_locally (Boolean) If true, then the Docker image won't be deleted on destro
 
 force_remove (Boolean) If true, then the image is removed forcibly when the resource is destroyed.
 Как я понял тут удаление происходит при удалении ресурса, как удалять именно ресурс(командой или просто из кода) мы либо не проходили, либо я пропустил. Буду благодарен, если объясните.
-------
+
 
 ## Дополнительное задание (со звёздочкой*)
 

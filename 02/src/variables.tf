@@ -19,6 +19,7 @@ variable "default_zone" {
   default     = "ru-central1-a"
   description = "https://cloud.yandex.ru/docs/overview/concepts/geo-scope"
 }
+
 variable "default_cidr" {
   type        = list(string)
   default     = ["10.0.1.0/24"]
@@ -31,11 +32,27 @@ variable "vpc_name" {
   description = "VPC network & subnet name"
 }
 
-
 ###ssh vars
+//В задании 6 надо "Также поступите с блоком **metadata", но в случае с переменной vms_resources 
+//тип map подходит тем, что хранит одинаковый тип number. metadata в main.tf содержит и number и string
+//Два разных типа может хранить переменная типа list, но опять в лекциях говорили, что any - дурное решение))
+//
+//Приведу несколько решений:
+// 1) Через list с типом any
+# variable "metadata_ubuntu" {
+#   type = list(any)
+#   default = [1,
+#             "ubuntu:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII1QxSausQCUOtejOVvKilQvXWjrvncfgDrkH9REvAia r2d2@MacBook-Pro-Andrew.local"
+#   ]
+#   description = "ssh-keygen -t ed25519"
+# } 
 
-variable "vms_ssh_root_key" {
-  type        = string
-  default     = "<your_ssh_ed25519_key>"
+//2) Через map с привидением типа string в number в файле main.tf
+variable "metadata_ubuntu" {
+  type = map(string)
+  default = { 
+            serial_port_enable = "1",
+            ssh_keys = "ubuntu:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII1QxSausQCUOtejOVvKilQvXWjrvncfgDrkH9REvAia r2d2@MacBook-Pro-Andrew.local"
+  }
   description = "ssh-keygen -t ed25519"
-}
+} 
