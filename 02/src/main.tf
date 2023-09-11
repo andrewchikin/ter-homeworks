@@ -37,17 +37,7 @@ resource "yandex_compute_instance" "platform_web" {
     nat = true
   }
 
-// 1) Через list с типом any
-#   metadata = {
-#     serial-port-enable = var.metadata_ubuntu[0]
-#     ssh-keys           = var.metadata_ubuntu[1]
-#   }
-
-//2) Через map с привидением типа string в number в файле main.tf
-metadata = {
-    serial-port-enable = tonumber(var.metadata_ubuntu.serial_port_enable)
-    ssh-keys           = var.metadata_ubuntu.ssh_keys
-  }
+metadata = var.metadata_ubuntu
 
 }
 
@@ -75,15 +65,6 @@ resource "yandex_compute_instance" "platform_db" {
     nat = true
   }
 
-// 1) Через list с типом any
-#   metadata = {
-#     serial-port-enable = var.metadata_ubuntu[0]
-#     ssh-keys           = var.metadata_ubuntu[1]
-#   }
+metadata = var.metadata_ubuntu
 
-//2) Через map с привидением типа string в number в файле main.tf
-metadata = {
-    serial-port-enable = tonumber(var.metadata_ubuntu.serial_port_enable)
-    ssh-keys           = var.metadata_ubuntu.ssh_keys
-  }
 }
