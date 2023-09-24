@@ -26,15 +26,15 @@
 # #     core_fraction = var.vms_resources.vms_resource.vm_core_fraction
 # #   }
 
-resource "yandex_compute_instance" "platform" {
+resource "yandex_compute_instance" "platform_foreach" {
   platform_id = var.vm_platform_id
-  depends_on = [yandex_compute_instance.platform_count]
+  depends_on = [yandex_compute_instance.platform_count] //
 
-  for_each = var.vm_resources_for_for_each
+  for_each = { for i in var.vm_resources_for_foreach : i.vm_name => i } //
   name          = each.value.vm_name
   resources{
-    cores         = each.value.cores
-    memory        = each.value.memory
+    cores         = each.value.cpu
+    memory        = each.value.ram
     core_fraction = each.value.core_fraction
   }
 

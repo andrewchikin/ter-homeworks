@@ -30,3 +30,12 @@ variable "vpc_name" {
   default     = "develop"
   description = "VPC network&subnet name"
 }
+
+variable "metadata_ubuntu" {
+  type = map(string)
+  default = { 
+            serial_port_enable = "1",
+            ssh_keys = "ubuntu:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII1QxSausQCUOtejOVvKilQvXWjrvncfgDrkH9REvAia r2d2@MacBook-Pro-Andrew.local"
+  }
+  description = "ssh-keygen -t ed25519"
+} 
