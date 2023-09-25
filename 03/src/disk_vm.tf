@@ -4,12 +4,9 @@ resource yandex_compute_disk "disks"{
   size     = 1
 }
 
-# 2. Создайте в том же файле одну ВМ c именем "storage" . 
-# Используйте блок **dynamic secondary_disk{..}** и мета-аргумент for_each для подключения созданных вами дополнительных дисков.
 resource "yandex_compute_instance" "storage" {
   platform_id = var.vm_platform_id
-  name = "storage"
-  //count = 1
+  name = "storage"//
   depends_on = [yandex_compute_disk.disks] //
   resources {
     cores         = var.vm_resources_storage.vms_resource.vm_cores
@@ -23,8 +20,6 @@ resource "yandex_compute_instance" "storage" {
         disk_id= secondary_disk.value
     }
   }
-
-
 
   boot_disk {
     initialize_params {

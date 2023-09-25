@@ -1,13 +1,3 @@
-# resource "local_file" "hosts_cfg" {
-#   content = templatefile("${path.module}/ansible.tftpl",
-#     { web       = yandex_compute_instance.platform_count,
-#       databases = yandex_compute_instance.platform_foreach,
-#       storage   = [yandex_compute_instance.storage]})
-      
-#   filename = "${abspath(path.module)}/hosts.cfg"
-
-# }
-
 resource "local_file" "hosts_cfg" {
   content = templatefile("${path.module}/ansible.tftpl",
     {
@@ -26,7 +16,7 @@ depends_on = [yandex_compute_instance.storage]
 
 #Добавление ПРИВАТНОГО ssh ключа в ssh-agent
   provisioner "local-exec" {
-    command = "cat ~/.ssh/id_ya_cloud | ssh-add -"
+    command = "cat ~/.ssh/id_yacloud | ssh-add -"
   }
 
 #Костыль!!! Даем ВМ 60 сек на первый запуск. Лучше выполнить это через wait_for port 22 на стороне ansible
