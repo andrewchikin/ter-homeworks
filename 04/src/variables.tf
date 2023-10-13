@@ -29,7 +29,7 @@ variable "vms_ssh_root_key" {
 
 variable "vm_web_name" {
   type        = string
-  default     = "netology-develop-platform-web"
+  default     = "netology-develop"
   description = "example vm_web_ prefix"
 }
 
